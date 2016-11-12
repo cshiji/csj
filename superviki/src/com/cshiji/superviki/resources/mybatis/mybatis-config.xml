@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- <properties resource="com/alex/demo1/config.properties" /> -->
+	<settings>
+		<!-- 全局延迟加载 -->
+		<!-- <setting name="lazyLoadingEnabled" value="true"/> -->
+		<!-- 侵略性 lazy loading 开关 -->
+		<!-- <setting name="aggressiveLazyLoading" value="false"/> -->
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="localCacheScope" value="STATEMENT" />
+		<setting name="proxyFactory" value="JAVASSIST" />
+		<setting name="logImpl" value="SLF4J" />
+	</settings>
+	<typeAliases>
+ 		<package name="com.cshiji.superviki.javaee.vo" />
+ 		<package name="com.cshiji.superviki.javaee.bo" />
+	</typeAliases>
+	<plugins>
+		<plugin interceptor="com.cshiji.superviki.base.mybatis.PageInterceptor">
+			<!-- 支持数据库dialect Class com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.MySQLDialect 
+				com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.OracleDialect com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.DB2Dialect 
+				com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.InformixDialect com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.SQLServerDialect 
+				com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.SQLServer2000Dialect 
+				com.hylandtec.icrm.iplatform.mybatis.paginator.dialect.SybaseDialect -->
+			<property name="dialectClass" value="com.cshiji.superviki.base.mybatis.pagedialect.OracleDialect" />
+		</plugin>
+	</plugins>
+</configuration>

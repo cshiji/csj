@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cshiji.superviki.javaee.mapper.StudentMapper">
+
+	<!-- 1、配置返回结果Map和参数Map -->
+	<resultMap type="Student" id="baseStudentResultMap">
+		<id property="stuId" column="STU_ID"/>
+		<result property="stuName" column="STU_NAME"/>
+		<result property="age" column="AGE"/>
+		<result property="insertTime" column="INSERT_TIME"/>
+	</resultMap>
+
+	<resultMap type="Student" id="studentResultMap" extends="baseStudentResultMap">
+	</resultMap>
+
+	<parameterMap type="Student" id="studentParameterMap">
+		<parameter property="stuId" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="stuName" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="age" javaType="int" jdbcType="BIGINT"/>
+		<parameter property="insertTime" javaType="date" jdbcType="TIMESTAMP"/>
+	</parameterMap>
+
+
+	<!-- 2、各个SeqID -->
+
+	<insert id="add" parameterMap="studentParameterMap">
+		<!-- <selectKey keyProperty="menuId" resultType="long" order="BEFORE">
+			SELECT SEQ_SYS_MENU.nextval from dual
+		</selectKey> -->
+		INSERT INTO STUDENT (STU_ID,STU_NAME,AGE,INSERT_TIME) VALUES (
+			#{stuId, jdbcType=VARCHAR}, 
+			#{stuName, jdbcType=VARCHAR}, 
+			#{age, jdbcType=BIGINT}, 
+			#{insertTime, jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<!-- 判断不可重复的属性是否已经存在，这里默认只判断deptName属性，具体的业务再进行修改添加 -->
+	
+	<!-- <select id="isExists" resultType="int" parameterType="SysMenu">
+		SELECT COUNT(1) FROM SYS_MENU WHERE MENU_NAME=#{menuName,jdbcType=VARCHAR} AND STATE_=1 AND MENU_ID!=#{menuId}
+		<trim prefix="WHERE" prefixOverrides="OR">  
+		    <if test="userName != null and userName !=''">  
+		        OR USER_NAME = #{userName}  
+		    </if>  
+		    <if test="orgId != null">  
+		        AND ORG_ID !=#{orgId}  
+		    </if>  
+
+		</trim> 
+	</select>
+	
+
+	<select id="getById" resultMap="sysMenuResultMap" parameterType="string">
+		SELECT * FROM SYS_MENU WHERE MENU_ID = #{value}
+	</select>
+	
+	获取菜单树节点
+	<select id="getMenuZtree" resultType="com.hansy.dataservice.sysmgr.bo.BaseZtree">
+		SELECT MENU_ID id,PAR_MENU_ID pId,MENU_NAME name FROM SYS_MENU WHERE STATE_=1 ORDER BY ORDER_ID
+	</select>
+	
+	获取每个角色的菜单树
+	<select id="getRoleZtree" resultType="com.hansy.dataservice.sysmgr.bo.BaseZtree" parameterType="string">
+		SELECT m.menu_id id,m.par_menu_id pId,m.menu_name name from sys_menu m,sys_role r,sys_role_menu rm where r.role_id=rm.role_id and m.menu_id=rm.menu_id and r.role_id=#{value} and m.state_=1 order by order_id
+	</select>
+	
+	获取菜单树并根据角色id默认选中菜单
+	<select id="getZtreeByRoleId" resultType="com.hansy.dataservice.sysmgr.bo.BaseZtree" parameterType="string">
+		select menu_id id,par_menu_id pId,menu_name name,
+			(case when menu_id 
+				in(SELECT m.menu_id from sys_menu m,sys_role r,sys_role_menu rm where r.role_id=rm.role_id and m.menu_id=rm.menu_id and r.role_id=#{value}) 
+					then 'true' else 'false' end) as checked 
+						from sys_menu where state_=1 order by order_id
+	</select>
+
+	<select id="page" resultMap="sysMenuResultMap" parameterType="java.util.Map">
+		SELECT * FROM SYS_MENU WHERE 1=1
+		各种条件 
+		<if test="queryOrgRegist.orgName != null and queryOrgRegist.orgName !='' ">
+			AND ORG_NAME LIKE CONCAT(CONCAT('%', #{queryOrgRegist.orgName}),'%')
+		</if>
+	</select>
+
+	<select id="totalCount" resultType="long" parameterType="SysMenu">
+		SELECT COUNT(1) FROM SYS_MENU WHERE 1=1
+		各种条件 
+		<if test="orgName != null and orgName !='' ">
+			AND ORG_NAME LIKE CONCAT(CONCAT('%', #{orgName}),'%')
+		</if>
+	</select>
+
+	<delete id="delete" parameterType="string">
+		UPDATE SYS_MENU SET STATE_=0 WHERE MENU_ID=#{value}  OR PAR_MENU_ID=#{value}
+		IN	<foreach collection="list" index="index" item="item" open="(" separator="," close=")"> 
+        #{item} 
+    	</foreach>
+	</delete>
+
+	<update id="edit" parameterType="SysMenu">
+		UPDATE SYS_MENU 
+		各种更改的字段  
+		<trim prefix="set" suffixOverrides=",">
+			<if test="menuName != null and menuName !='' ">
+				MENU_NAME = #{menuName, jdbcType=VARCHAR}, 
+			</if>
+			<if test="parMenuId != null and parMenuId !='' ">
+				PAR_MENU_ID = #{parMenuId, jdbcType=VARCHAR}, 
+			</if>
+			<if test="img != null and img !='' ">
+				IMG = #{img, jdbcType=VARCHAR}, 
+			</if>
+			<if test="menuTarget != null and menuTarget !='' ">
+				MENU_TARGET = #{menuTarget, jdbcType=VARCHAR}, 
+			</if>
+			<if test="menuLayer != null and menuLayer !='' ">
+				MENU_LAYER = #{menuLayer, jdbcType=BIGINT}, 
+			</if>
+			<if test="orderId != null and orderId !='' ">
+				ORDER_ID = #{orderId, jdbcType=BIGINT}, 
+			</if>
+			<if test="state != null and state !='' ">
+				STATE_ = #{state, jdbcType=BIGINT}, 
+			</if>
+			<if test="createDt != null and createDt !='' ">
+				CREATE_DT = #{createDt, jdbcType=TIMESTAMP}, 
+			</if>
+			<if test="updateDt != null and updateDt !='' ">
+				UPDATE_DT = #{updateDt, jdbcType=TIMESTAMP}, 
+			</if>
+		</trim>
+			,URL = #{url, jdbcType=VARCHAR}
+			WHERE MENU_ID = #{menuId, jdbcType=VARCHAR} 
+	</update> -->
+</mapper>

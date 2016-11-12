@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- package 实体所在的包名 -->
+<hibernate-mapping package="com.cshiji.superviki.javaee.vo">
+	<!-- name 类名，table 表名 -->
+	<class name="Student" table="student">
+		<!--设置主键并设置生成策略  -->
+		<id name="stuId" column="stu_id" >
+		</id>
+		<property name="stuName">
+			<column name="stu_name"></column>
+		</property>		
+		<property name="age">
+			<column name="age"></column>
+		</property>	
+		<property name="insertTime">
+			<column name="insert_time"></column>
+		</property>
+	</class>
+</hibernate-mapping>
