@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-11-18 16:25:05
+Date: 2016-11-18 18:20:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -142,6 +142,7 @@ CREATE TABLE `user` (
   `gender` tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别（1=男，2=女，0=保密）',
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT '最近更新时间',
+  `user_type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '普通用户，系统用户（0，1）',
   `user_extend` bit(1) NOT NULL DEFAULT b'0' COMMENT '拓展信息（1=有，0=没有）',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
@@ -162,6 +163,7 @@ CREATE TABLE `user_log` (
   `log_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'logID',
   `user_id` int(10) unsigned NOT NULL COMMENT '用户ID',
   `log_type` tinyint(3) unsigned NOT NULL COMMENT 'log类型（用户操作类型信息）',
+  `log_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'log时间（数据写入时间）',
   `log_detail` varchar(100) NOT NULL COMMENT '用户操作详细信息',
   `log_extend` bit(1) NOT NULL DEFAULT b'0' COMMENT 'log拓展',
   PRIMARY KEY (`log_id`),
@@ -170,22 +172,4 @@ CREATE TABLE `user_log` (
 
 -- ----------------------------
 -- Records of user_log
--- ----------------------------
-
--- ----------------------------
--- Table structure for `user_login_info`
--- ----------------------------
-DROP TABLE IF EXISTS `user_login_info`;
-CREATE TABLE `user_login_info` (
-  `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
-  `latest_ip` int(11) unsigned NOT NULL,
-  `latest_login_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  `latest_logout_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`user_id`),
-  KEY `latest_login_time` (`latest_login_time`),
-  CONSTRAINT `uli_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户登录信息记录表';
-
--- ----------------------------
--- Records of user_login_info
 -- ----------------------------
