@@ -4,7 +4,7 @@
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxws  http://cxf.apache.org/schemas/jaxws.xsd">
 	<!-- WebService 接口定义 -->
-    <jaxws:server  serviceClass="com.cshiji.superviki.webservice.service.WSStudentService" address="/WSStudentService">   
+    <jaxws:server  serviceClass="com.cshiji.superviki.webservice.service.WSStudentService" address="/WSStudentService/ws">   
 	 <jaxws:serviceBean>
 	      <ref bean="WSStudentService" />
 	     </jaxws:serviceBean>
