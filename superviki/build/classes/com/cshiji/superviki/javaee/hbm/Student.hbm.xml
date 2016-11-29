@@ -8,13 +8,14 @@
 	<class name="Student" table="student">
 		<!--设置主键并设置生成策略  -->
 		<id name="stuId" column="stu_id" >
+			<generator class="identity"></generator>
 		</id>
 		<property name="stuName">
 			<column name="stu_name"></column>
 		</property>		
-		<property name="age">
-			<column name="age"></column>
-		</property>	
+		<property name="age"></property>	
+		<property name="birthday"></property>		
+		<property name="address"></property>
 		<property name="insertTime">
 			<column name="insert_time"></column>
 		</property>

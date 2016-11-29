@@ -37,7 +37,7 @@ public class HibernateDao implements IHibernateDao {
 	 */
 	@Override
 	public Session getSession(){
-		return this.sessionFactory.getCurrentSession();
+		return this.sessionFactory.openSession();
 	}
 	
 	/**

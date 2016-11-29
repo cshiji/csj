@@ -21,9 +21,13 @@
        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 	  <!-- default-lazy-init="true"延迟加载 -->
 	<context:component-scan base-package="com.cshiji.superviki"></context:component-scan>
+	
+	<!-- swagger 注入 -->
 	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig"></bean> 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean> 
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean> 
+	<!-- quartz 定时任务注入 -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" /><bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean> 
+	
 	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -98,6 +102,7 @@
 	<context:annotation-config />
 	
 	<import resource="applicationContext-ws.xml" />
+	<!-- <import resource="quartz-config.xml" /> -->
 	<!-- 打开注解驱动开启事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

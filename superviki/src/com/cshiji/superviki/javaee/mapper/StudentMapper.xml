@@ -8,6 +8,9 @@
 		<result property="stuName" column="STU_NAME"/>
 		<result property="age" column="AGE"/>
 		<result property="insertTime" column="INSERT_TIME"/>
+		<result property="birthday" column="BIRTHDAY"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
 	</resultMap>
 
 	<resultMap type="Student" id="studentResultMap" extends="baseStudentResultMap">
@@ -18,6 +21,9 @@
 		<parameter property="stuName" javaType="string" jdbcType="VARCHAR"/>
 		<parameter property="age" javaType="int" jdbcType="BIGINT"/>
 		<parameter property="insertTime" javaType="date" jdbcType="TIMESTAMP"/>
+		<parameter property="address" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="email" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="birthday" javaType="date" jdbcType="TIMESTAMP"/>
 	</parameterMap>
 
 
@@ -27,10 +33,12 @@
 		<!-- <selectKey keyProperty="menuId" resultType="long" order="BEFORE">
 			SELECT SEQ_SYS_MENU.nextval from dual
 		</selectKey> -->
-		INSERT INTO STUDENT (STU_ID,STU_NAME,AGE,INSERT_TIME) VALUES (
-			#{stuId, jdbcType=VARCHAR}, 
+		INSERT INTO STUDENT (STU_NAME,AGE,BIRTHADY,ADDRESS,EMAIL,INSERT_TIME) VALUES (
 			#{stuName, jdbcType=VARCHAR}, 
 			#{age, jdbcType=BIGINT}, 
+			#{insertTime, jdbcType=TIMESTAMP},
+			#{address, jdbcType=VARCHAR},
+			#{email, jdbcType=VARCHAR},
 			#{insertTime, jdbcType=TIMESTAMP}
 		)
 	</insert>
