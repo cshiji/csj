@@ -39,7 +39,8 @@
 	        <ref bean="jobDetail" />        <!-- 制定定时任务 -->
 	    </property>
 	    <property name="cronExpression">
-	        <value>0 0 24 * * ?</value>    <!-- 指定定时方式，每天12点-->
+	        <value>0/10 * * * * ?</value>    <!-- 指定定时方式，每隔10秒 -->
+	        <!-- <value>0 0 24 * * ?</value>    指定定时方式，每天24点-->
 	    </property>
 	</bean>
 	<!--任务配置-->
