@@ -9,29 +9,27 @@ import com.mangofactory.swagger.models.dto.ApiInfo;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 
+/**
+ * 
+ * @author cj
+ * @time 2016-11-28
+ */
 @Configuration
 @EnableSwagger
 public class SwaggerConfig
 {
     private SpringSwaggerConfig springSwaggerConfig;
-    /**
-     * Required to autowireSpringSwaggerConfig
-     */
     @Autowired
     public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig)
     {
        this.springSwaggerConfig = springSwaggerConfig;
     }
-    /**
-     * EverySwaggerSpringMvcPlugin bean is picked up by the swagger-mvc
-     * framework - allowing for multiple swagger groups i.e. samecode base
-     * multipleswagger resource listings.
-     */
     @Bean
     public SwaggerSpringMvcPlugin customImplementation()
     {
        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
     }
+    /*swagger ui头部显示*/
     private ApiInfo apiInfo()
     {
        ApiInfo apiInfo = new ApiInfo(
