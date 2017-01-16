@@ -10,7 +10,7 @@ public class Student {
 	private String stuName;
 	private int age;
 	private Date birthday;
-	private String emial;
+	private String email;
 	private String address;
 	private Date insertTime;
 	public String getStuId() {
@@ -37,11 +37,11 @@ public class Student {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public String getEmial() {
-		return emial;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmial(String emial) {
-		this.emial = emial;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getAddress() {
 		return address;

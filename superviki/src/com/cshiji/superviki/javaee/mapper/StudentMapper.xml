@@ -33,10 +33,10 @@
 		<!-- <selectKey keyProperty="menuId" resultType="long" order="BEFORE">
 			SELECT SEQ_SYS_MENU.nextval from dual
 		</selectKey> -->
-		INSERT INTO STUDENT (STU_NAME,AGE,BIRTHADY,ADDRESS,EMAIL,INSERT_TIME) VALUES (
+		INSERT INTO STUDENT (STU_NAME,AGE,BIRTHDAY,ADDRESS,EMAIL,INSERT_TIME) VALUES (
 			#{stuName, jdbcType=VARCHAR}, 
 			#{age, jdbcType=BIGINT}, 
-			#{insertTime, jdbcType=TIMESTAMP},
+			#{birthday, jdbcType=TIMESTAMP},
 			#{address, jdbcType=VARCHAR},
 			#{email, jdbcType=VARCHAR},
 			#{insertTime, jdbcType=TIMESTAMP}

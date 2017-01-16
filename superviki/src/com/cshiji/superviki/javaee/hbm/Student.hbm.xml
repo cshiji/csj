@@ -16,6 +16,7 @@
 		<property name="age"></property>	
 		<property name="birthday"></property>		
 		<property name="address"></property>
+		<property name="email"></property>
 		<property name="insertTime">
 			<column name="insert_time"></column>
 		</property>

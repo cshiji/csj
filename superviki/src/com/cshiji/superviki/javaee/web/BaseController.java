@@ -8,5 +8,5 @@ import com.cshiji.superviki.base.dao.impl.HibernateDao;
  *
  */
 public class BaseController extends HibernateDao {
-
+	
 }
