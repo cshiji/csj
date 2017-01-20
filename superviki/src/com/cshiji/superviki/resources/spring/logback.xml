@@ -21,8 +21,8 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </layout>
     </appender>
 
-    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">  
-	     <file>../logs/testFile.log</file>  
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender"> 
+	    <file>../logs/testFile.log</file>  
 	    <append>true</append>  
 	    <encoder>  
 	      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>  
@@ -37,7 +37,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     -->
     <!-- hibernate logger -->
     <logger name="org.hibernate" level="error" />
-    <!-- Spring framework logger -->
+   <!--  Spring framework logger -->
     <logger name="org.springframework" level="error" additivity="false"></logger>
 
     <logger name="com.creditease" level="info" additivity="true">
