@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- package 实体所在的包名 -->
+<hibernate-mapping package="com.cshiji.superviki.javaee.vo">
+	<!-- name 类名，table 表名 -->
+	<class name="Affair" table="affair">
+		<!--设置主键并设置生成策略  -->
+		<id name="id" column="id" >
+			<generator class="identity"></generator>
+		</id>
+		<property name="userId">
+			<column name="user_id"></column>
+		</property>		
+		<property name="title"></property>	
+		<property name="type"></property>		
+		<property name="detailId">
+			<column name="detail_id"></column>
+		</property>
+		<property name="status"></property>
+		<property name="createTime">
+			<column name="create_time"></column>
+		</property>
+		<property name="updateTime">
+			<column name="update_time"></column>
+		</property>
+		<property name="hasAttachment">
+			<column name="has_attachment"></column>
+		</property>
+		<property name="affairExtend">
+			<column name="affair_extend"></column>
+		</property>
+	</class>
+</hibernate-mapping>
