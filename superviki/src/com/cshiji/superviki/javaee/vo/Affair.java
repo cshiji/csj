@@ -36,11 +36,11 @@ public class Affair implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	private Date create_time;
+	private Date createTime;
 	/**
 	 * 更新时间
 	 */
-	private Date update_time;
+	private Date updateTime;
 	/**
 	 * 是否有附属文件（0=没有，1=有）
 	 */
@@ -85,17 +85,17 @@ public class Affair implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public Date getCreate_time() {
-		return create_time;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
-	public Date getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	public int getHasAttachment() {
 		return hasAttachment;
@@ -112,7 +112,7 @@ public class Affair implements Serializable {
 	@Override
 	public String toString() {
 		return "Affair [id=" + id + ", userId=" + userId + ", title=" + title + ", type=" + type + ", detailId="
-				+ detailId + ", status=" + status + ", create_time=" + create_time + ", update_time=" + update_time
+				+ detailId + ", status=" + status + ", createTime=" + createTime + ", updateTime=" + updateTime
 				+ ", hasAttachment=" + hasAttachment + ", affairExtend=" + affairExtend + "]";
 	}
 }

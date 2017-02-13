@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- package 实体所在的包名 -->
+<hibernate-mapping package="com.cshiji.superviki.javaee.vo">
+	<!-- name 类名，table 表名 -->
+	<class name="AffairDetailTask" table="affair_detail_task">
+		<!--设置主键并设置生成策略  -->
+		<id name="id" column="id" >
+			<generator class="identity"></generator>
+		</id>
+		<property name="themeType">
+			<column name="theme_type"></column>
+		</property>		
+		<property name="startTime">
+			<column name="start_time"></column>
+		</property>
+		<property name="endTime">
+			<column name="end_time"></column>
+		</property>
+		<property name="taskParticipant">
+			<column name="task_participant"></column>
+		</property>
+		<property name="taskWhere">
+			<column name="task_where"></column>
+		</property>
+		<property name="detailInfo">
+			<column name="detail_info"></column>
+		</property>
+		<property name="cautionTime">
+			<column name="caution_time"></column>
+		</property>
+		<property name="cautionType">
+			<column name="caution_type"></column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- package 实体所在的包名 -->
+<hibernate-mapping package="com.cshiji.superviki.javaee.vo">
+	<!-- name 类名，table 表名 -->
+	<class name="UserLog" table="user_log">
+		<!--设置主键并设置生成策略  -->
+		<id name="logId" column="log_id" >
+			<generator class="identity"></generator>
+		</id>
+		<property name="userId">
+			<column name="user_id"/>
+		</property>	
+		<property name="logType">
+			<column name="log_type"/>
+		</property>	
+		<property name="logDetail">
+			<column name="log_detail"/>
+		</property>	
+		<property name="logExtend">
+			<column name="log_extend"/>
+		</property>	
+		<property name="logTime">
+			<column name="log_time"/>
+		</property>	
+	</class>
+</hibernate-mapping>

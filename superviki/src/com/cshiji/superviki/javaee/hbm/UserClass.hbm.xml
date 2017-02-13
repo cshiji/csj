@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- package 实体所在的包名 -->
+<hibernate-mapping package="com.cshiji.superviki.javaee.vo">
+	<!-- name 类名，table 表名 -->
+	<class name="UserClass" table="user_class">
+		<!--设置主键并设置生成策略  -->
+		<id name="id" column="id" >
+			<generator class="identity"></generator>
+		</id>
+		<property name="userId">
+			<column name="user_id"/>
+		</property>	
+		<property name="userType">
+			<column name="user_type"/>
+		</property>	
+		<property name="createDate">
+			<column name="create_date"/>
+		</property>	
+		<property name="registerIp">
+			<column name="register_ip"/>
+		</property>	
+		<property name="registerInfo">
+			<column name="register_info"/>
+		</property>	
+		<property name="lastLoginTime">
+			<column name="last_login_time"/>
+		</property>	
+		<property name="lastLoginIp">
+			<column name="last_login_ip"/>
+		</property>	
+		<property name="lastLoginInfo">
+			<column name="last_login_info"/>
+		</property>	
+		<property name="updateTime">
+			<column name="update_time"/>
+		</property>	
+	</class>
+</hibernate-mapping>
