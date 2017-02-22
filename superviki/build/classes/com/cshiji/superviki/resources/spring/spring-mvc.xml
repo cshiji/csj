@@ -30,6 +30,7 @@
 	<mvc:resources location="/editor/" mapping="/editor/**" />
 	<mvc:resources location="/" mapping="/*.html" />
 	<mvc:resources location="/dist/" mapping="/dist/**" />
+	<mvc:resources location="/src/main/" mapping="/src/main/**" />
 	<!-- 打开spring mvc注解驱动 -->
 	<mvc:annotation-driven />
 

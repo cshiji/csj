@@ -18,12 +18,6 @@ import com.cshiji.superviki.javaee.vo.Student;
 @Service("studentService")
 @SuppressWarnings({ "rawtypes"})
 public class StudentServiceImpl implements StudentService{
-	
-	/**
-	 * MyBatis 命名空间
-	 */
-	private final static String MAPPER_NAMESPACE = "com.cshiji.superviki.javaee.mapper.StudentMapper";
-	private SqlSessionTemplate sqlSessionTemplate;
 	@Resource
 	private StudentMapper studentMapper;
 	@Transactional

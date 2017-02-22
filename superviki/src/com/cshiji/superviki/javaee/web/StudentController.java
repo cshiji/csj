@@ -26,8 +26,8 @@ public class StudentController extends BaseController{
 	
 	@RequestMapping("/helloMybatis")
 	public String testMybatis(){
-		log.debug("debug!!!!!!!!!!");
-		log.error("错误！！！！！！！");
+		log.info("消息!!!!!!!!!!");
+		log.warn("警告！！！！！！！");
 		Student student=new Student();
 		student.setStuId("1");
 		student.setAge(20);
