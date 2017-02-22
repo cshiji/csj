@@ -21,7 +21,7 @@ import com.cshiji.superviki.javaee.vo.User;
 
 @Controller
 @RequestMapping("/user")
-public class UserAction {
+public class UserController {
 	@Resource
 	private UserService userService;
 	
