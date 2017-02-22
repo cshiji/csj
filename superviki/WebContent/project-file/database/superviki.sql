@@ -20,8 +20,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `affair`;
 CREATE TABLE `affair` (
-  `affair_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '�¼�����ID',
-  `user_id` int(11) unsigned NOT NULL COMMENT '�¼�������',
+  `affair_id` varchar(11) NOT NULL COMMENT '�¼�����ID',
+  `user_id` varchar(11) NOT NULL COMMENT '�¼�������',
   `affair_title` varchar(50) NOT NULL COMMENT '�¼�����',
   `affair_type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '�¼�����',
   `affair_detail_id` int(11) unsigned NOT NULL COMMENT '�¼��ı�����',
@@ -43,9 +43,9 @@ CREATE TABLE `affair` (
 -- ----------------------------
 DROP TABLE IF EXISTS `affair_delete`;
 CREATE TABLE `affair_delete` (
-  `user_id` int(11) unsigned NOT NULL COMMENT '�û�ID',
+  `user_id` varchar(11) NOT NULL COMMENT '�û�ID',
   `affair_type` tinyint(3) unsigned NOT NULL COMMENT '�¼�����',
-  `affair_id` int(11) unsigned NOT NULL COMMENT '�¼�ID',
+  `affair_id` varchar(11) NOT NULL COMMENT '�¼�ID',
   PRIMARY KEY (`user_id`,`affair_type`,`affair_id`),
   KEY `ad_affair_id` (`affair_id`),
   CONSTRAINT `ad_affair_id` FOREIGN KEY (`affair_id`) REFERENCES `affair` (`affair_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -61,7 +61,7 @@ CREATE TABLE `affair_delete` (
 -- ----------------------------
 DROP TABLE IF EXISTS `affair_detail_normal`;
 CREATE TABLE `affair_detail_normal` (
-  `affair_detail_normal_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '�¼���ϸ��Ϣ����ID',
+  `affair_detail_normal_id` varchar(11) NOT NULL COMMENT '�¼���ϸ��Ϣ����ID',
   `theme_type` tinyint(3) unsigned NOT NULL COMMENT '�¼�����',
   `detail_info` varchar(1000) NOT NULL COMMENT '�¼���ϸ����',
   PRIMARY KEY (`affair_detail_normal_id`)
@@ -76,7 +76,7 @@ CREATE TABLE `affair_detail_normal` (
 -- ----------------------------
 DROP TABLE IF EXISTS `affair_detail_task`;
 CREATE TABLE `affair_detail_task` (
-  `affair_detail_task_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '�����¼�����ID',
+  `affair_detail_task_id` varchar(11)  NOT NULL COMMENT '�����¼�����ID',
   `theme_type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '������������',
   `start_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '����ʼʱ�䣨ǰ���ṩ��',
   `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '�������ʱ�䣨ǰ���ṩ��',
@@ -98,10 +98,10 @@ CREATE TABLE `affair_detail_task` (
 -- ----------------------------
 DROP TABLE IF EXISTS `attachment`;
 CREATE TABLE `attachment` (
-  `attachment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '����ID',
+  `attachment_id` varchar(11)  NOT NULL COMMENT '����ID',
   `attachment_type` tinyint(3) unsigned NOT NULL COMMENT '�����������ͣ�Ŀǰ���û���ػ��¼���أ�',
   `file_type` tinyint(3) unsigned NOT NULL COMMENT '�����ļ����ͣ��ı���ͼƬ����Ƶ�ȣ�',
-  `master_id` int(10) unsigned NOT NULL COMMENT '������Ӧ����ID',
+  `master_id` varchar(11) NOT NULL COMMENT '������Ӧ����ID',
   `attachment_url` varchar(50) NOT NULL COMMENT '�ļ��洢url·��',
   PRIMARY KEY (`attachment_id`),
   KEY `a_master_id` (`master_id`,`attachment_type`) USING BTREE
@@ -138,7 +138,7 @@ INSERT INTO `student` VALUES ('7', '王麻子6', '20', '2016-11-21', '444@qq.com
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_code_info`;
 CREATE TABLE `sys_code_info` (
-  `sys_code_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code_id` varchar(11) NOT NULL,
   `sys_code_name` varchar(255) NOT NULL,
   `sys_code_type` varchar(255) NOT NULL,
   `sys_code_value` varchar(255) NOT NULL,
@@ -152,24 +152,13 @@ CREATE TABLE `sys_code_info` (
 -- ----------------------------
 -- Table structure for test
 -- ----------------------------
-DROP TABLE IF EXISTS `test`;
-CREATE TABLE `test` (
-  `uid` int(1) NOT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of test
--- ----------------------------
-INSERT INTO `test` VALUES ('256');
-INSERT INTO `test` VALUES ('123456789');
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '����ID',
+  `user_id` varchar(11) NOT NULL COMMENT '����ID',
   `user_name` varchar(20) NOT NULL COMMENT '�û��˺�',
   `user_password` varchar(32) NOT NULL COMMENT '�û�����',
   `user_phone` varchar(20) DEFAULT NULL COMMENT '�û��绰',
@@ -197,7 +186,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_log`;
 CREATE TABLE `user_log` (
-  `log_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'logID',
+  `log_id` varchar(11) NOT NULL COMMENT 'logID',
   `user_id` varchar(28) NOT NULL,
   `log_type` tinyint(3) unsigned NOT NULL COMMENT 'log���ͣ��û�����������Ϣ��',
   `log_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'logʱ�䣨����д��ʱ�䣩',
